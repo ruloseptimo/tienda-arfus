@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'ID del comprador'
     },
     event_type: {
-      type: DataTypes.ENUM('LOGIN', 'LOGOUT', 'PURCHASE', 'UPDATE_PROFILE', 'OTHER'), // Tipo de dato: ENUM con valores específicos
+      type: DataTypes.ENUM('PURCHASE', 'REFUND', 'VISIT', 'DATA_CONSULTATION', 'DATA_UPDATE', 'INVOICE_DOWNLOAD'), // Tipo de dato: ENUM con valores específicos
       allowNull: false, // No permite valores nulos
       comment: 'Tipo de evento'
     },
@@ -41,3 +41,4 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   return BuyerEvent;
+};

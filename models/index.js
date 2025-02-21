@@ -6,7 +6,10 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+
+// Importa la configuración de la base de datos
+const config = require(__dirname + '/../config/config.js')[env];
+
 const db = {};
 
 let sequelize;
@@ -17,27 +20,22 @@ if (config.use_env_variable) {
 }
 
 fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
+  .readdirSync(__dirname) // Lee todos los archivos en el directorio actual
+  .filter(file => { // Filtra los archivos que son archivos JavaScript de modelos
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
-  .forEach(file => {
+  .forEach(file => { // Importa cada archivo de modelo
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
+    db[model.name] = model; // Agrega el modelo al objeto db
   });
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+Object.keys(db).forEach(modelName => { // Itera sobre los modelos
+  if (db[modelName].associate) { // Si el modelo tiene asociaciones
+    db[modelName].associate(db); // Llama a la función associate del modelo
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db.sequelize = sequelize; // Agrega la instancia de Sequelize al objeto db
+db.Sequelize = Sequelize; // Agrega el objeto Sequelize al objeto db
 
-module.exports = db;
+module.exports = db; // ¡Exporta el objeto db!
