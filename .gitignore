@@ -1,0 +1,64 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos temporales y de respaldo
+*~
+*.swp
+*.tmp
+*.bak
+*.lock
+
+# Archivos de compilación
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.out
+
+# Carpetas de dependencias
+node_modules/
+vendor/
+
+# Archivos de configuración
+.env
+config.ini
+secrets.json
+
+# Logs
+*.log
+*.err
+
+# Datos sensibles
+id_rsa
+id_rsa.pub
+*.pem
+*.key
+
+# Archivos de desarrollo
+.idea/
+.vscode/
+
+# Archivos específicos del lenguaje
+*.pyc  # Python
+*.class  # Java
+*.DS_Store  # macOS
+Thumbs.db  # Windows
+.env  # Variables de entorno
+
+# Paquetes y gestores de dependencias
+package-lock.json
+yarn.lock
+Gemfile.lock
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.sln
+*.user
+
+# Otros
+.cache/
+.history
