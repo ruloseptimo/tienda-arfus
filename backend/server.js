@@ -1,44 +1,34 @@
-// Importa el módulo dotenv para cargar variables de entorno desde un archivo .env (si existe).
-require('dotenv').config();
-
-// Importa el framework Express para crear el servidor web.
 const express = require('express');
-
-// Importa el middleware CORS para habilitar solicitudes de origen cruzado (Cross-Origin Resource Sharing).
 const cors = require('cors');
-
-// Importa las rutas para productos.
+const { sequelize } = require('./models');
 const productRoutes = require('./routes/productRoutes');
-
-// Importa las rutas para eventos.
 const eventRoutes = require('./routes/eventRoutes');
+const queryRoutes = require('./routes/queryRoutes');
+const { log } = require('./config/config');
 
-// Importa las rutas para consultas (queries).
-const queryRoutes = require('./routes/queryRoutes'); // Nueva línea: Importa las rutas para consultas.
-
-// Crea una instancia de la aplicación Express.
 const app = express();
-
-// Define el puerto en el que el servidor escuchará. Usa la variable de entorno PORT si está definida, sino usa 3000.
 const PORT = process.env.PORT || 3000;
 
-// Usa el middleware CORS para habilitar CORS en todas las rutas.
+// Middlewares
 app.use(cors());
+app.use(express.json());
 
-// Usa el middleware express.json() para parsear el cuerpo de las solicitudes HTTP en formato JSON.
-app.use(express.json()); // Habilita el análisis de JSON en las solicitudes
-
-// Monta las rutas de productos bajo el path /api/products.
+// Routes
 app.use('/api/products', productRoutes);
-
-// Monta las rutas de eventos bajo el path /api/events.
 app.use('/api/events', eventRoutes);
+app.use('/api/queries', queryRoutes);
 
-// Monta las rutas de consultas (queries) bajo el path /api/queries.
-app.use('/api/queries', queryRoutes); // Nueva línea: Monta las rutas para consultas.
+// Función para iniciar el servidor
+function startServer() {
+    app.listen(PORT, () => {
+        console.log(` Servidor corriendo en http://localhost:${PORT}`);
+    });
+}
 
-// Inicia el servidor y escucha en el puerto especificado.
-app.listen(PORT, () => {
-    // Imprime un mensaje en la consola indicando que el servidor está corriendo.
-    console.log(` Servidor corriendo en http://localhost:${PORT}`);
-});
+// Exportar app y la función para iniciar el servidor
+module.exports = { app, startServer };
+
+// Iniciar el servidor solo si este archivo se ejecuta directamente
+if (require.main === module) {
+    startServer();
+}
