@@ -1,7 +1,7 @@
 # Tienda Arfus
 
 ## 📌 Descripción
-Este proyecto implementa un sistema de gestión de productos y compras utilizando **Node.js**, **Express**, **Sequelize**, **MySQL**, y una interfaz de usuario con **Vue.js**.
+Este proyecto implementa un sistema de gestión de productos y compras utilizando **Node.js**, **Express**, **Sequelize**, **MySQL**, y una interfaz de usuario con **Vue.js** **Vue Router** (navegación) **Vuetify** (biblioteca de componentes UI) **Axios** (peticiones HTTP).
 
 ## 🛠️ Tecnologías Utilizadas
 - **Backend:** Node.js, Express, Sequelize (ORM)
