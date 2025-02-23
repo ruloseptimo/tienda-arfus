@@ -1,4 +1,4 @@
-# Proyecto de Gestión de Productos y Compras
+# Tienda Arfus
 
 ## 📌 Descripción
 Este proyecto implementa un sistema de gestión de productos y compras utilizando **Node.js**, **Express**, **Sequelize**, **MySQL**, y una interfaz de usuario con **Vue.js**.
@@ -8,44 +8,42 @@ Este proyecto implementa un sistema de gestión de productos y compras utilizand
 - **Base de Datos:** MySQL
 - **Frontend:** Vue.js, Axios
 - **Pruebas:** Jest, Supertest, Vue Test Utils
+- **Seeders:** Faker
 
 ## 📂 Estructura del Proyecto
 ```
 ├── backend
-│   ├── src
-│   │   ├── models (Modelos Sequelize)
-│   │   ├── routes (Rutas Express)
-│   │   ├── controllers (Controladores de lógica de negocio)
-│   │   ├── services (Servicios adicionales)
-│   │   ├── config (Configuración de base de datos y entorno)
-│   │   ├── app.js (Archivo principal de Express)
-│   ├── tests (Pruebas unitarias con Jest)
+│   ├── models (Modelos Sequelize)
+│   ├── routes (Rutas Express)
+│   ├── controllers (Controladores de lógica de negocio)
+│   ├── services (Servicios adicionales)
+│   ├── config (Configuración de base de datos y entorno)
+│   ├── server.js (Archivo principal de Express)
+│   ├── tests (Pruebas unitarias con Jest y de integración con Supertest)
 │   ├── package.json (Dependencias y scripts de Node.js)
-│   ├── .env (Configuraciones de entorno)
+│   └── .env (Configuraciones de entorno)
 │
 ├── frontend
 │   ├── src
 │   │   ├── components (Componentes Vue)
 │   │   ├── views (Vistas principales)
 │   │   ├── router (Rutas Vue Router)
-│   │   ├── store (Estado global con Vuex/Pinia)
 │   │   ├── App.vue (Componente raíz)
 │   │   ├── main.js (Punto de entrada de Vue)
-│   ├── tests (Pruebas con Jest y Vue Test Utils)
-│   ├── package.json (Dependencias y scripts de Vue.js)
+│   │   └── services (Patrón de llamadas con axios)
+│   └── package.json (Dependencias y scripts de Vue.js)
 ```
 
 ## 🚀 Instalación y Configuración
 
 ### 🔹 1. Clonar el Repositorio
 ```sh
-git clone https://github.com/tu_usuario/proyecto.git
-cd proyecto
+git clone https://github.com/ruloseptimo/tienda-arfus.git
+cd tienda-arfus/backend
 ```
 
 ### 🔹 2. Configurar Backend
 ```sh
-cd backend
 npm install
 cp .env.example .env  # Configurar variables de entorno
 ```
@@ -53,7 +51,7 @@ cp .env.example .env  # Configurar variables de entorno
 ```sh
 npx sequelize-cli db:migrate
 ```
-**Llenar con Datos Dummy:**
+**Llenar con Datos Dummy con faker:**
 ```sh
 node scripts/fillDatabase.js
 ```
@@ -66,7 +64,7 @@ npm start
 ```sh
 cd ../frontend
 npm install
-npm run serve
+npm run dev
 ```
 
 ## 📡 API REST - Endpoints
@@ -76,6 +74,8 @@ npm run serve
 | POST | `/api/products` | Crear un producto |
 | DELETE | `/api/products/:id` | Eliminar un producto |
 | POST | `/api/events` | Registrar un evento de comprador |
+| GET | `/api/queries/filtered-products` | Obtener la lista de productos con un precio mayor a 50 y una cantidad en stock menor a 20 |
+| GET | `/api/queries/transaction-report` | Obtener un informe con los siguientes datos: informe de transacciones con: Nombre y apellido de usuario, Id del usuario, documento del usuario, número de transacción, valor de transacción, fecha de la transacción, ID del evento relacionado a la compra |
 
 ## 🧪 Ejecución de Pruebas
 **Pruebas Backend:**
@@ -83,11 +83,21 @@ npm run serve
 cd backend
 npm test
 ```
-**Pruebas Frontend:**
-```sh
-cd frontend
-npm test
-```
+## Imagenes
+**Página principal:**
+![alt text](image.png)
+
+**Lista de Productos:**
+![alt text](image-1.png)
+
+**Crear un Producto:**
+![alt text](image-2.png)
+
+**Eliminar un Producto:**
+![alt text](image-3.png)
+
+**Reporte de Compradores:**
+![alt text](image-4.png)
 
 ## 📌 Contribución
 1. Haz un **fork** del repositorio.
@@ -100,5 +110,5 @@ npm test
 Este proyecto está bajo la **MIT License**.
 
 ---
-**¡Gracias por usar este sistema! 🚀**
+**¡Gracias!**
 
